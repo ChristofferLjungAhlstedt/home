@@ -17,11 +17,32 @@ calculateInc(input);
 
 
 function calcAvr (arr) {
-
+    let inc = 0;
+    let prevAvr;
     for (let i = 0; i < arr.length; i++) {
-        if (arr[i + 3] == undefined) break;
-        
+        if (arr[i + 2] == undefined) break;
+        averagedList = new Avr(arr, i);
+        if (i == 0) {
+            prevAvr = averagedList.average; 
+            continue;
+        }
+        if (averagedList.average > prevAvr) inc++;
+        prevAvr = averagedList.average;
     }
+    console.log(inc)
 }
 
-console.log(input[input.length + 3]);
+class Avr {
+    constructor(index, loopPos) {
+        for (let i = 0; i < 3; i++) {
+            this.average += index[loopPos + i];
+        }
+        if (loopPos < 3) {
+            console.log(this.average);
+        }
+       
+    }
+
+}
+
+calcAvr(input);
